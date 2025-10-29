@@ -1,0 +1,355 @@
+/* --- Paleta de Colores y Estilos Globales --- */
+:root {
+    /* Colores para el Header y Footer (Gradiente) */
+    --primary-color: #6a11cb;
+    --secondary-color: #2575fc;
+    --light-text-color: #f8f9fa;
+
+    /* Colores para el Contenido (Neumórfico) */
+    --bg-color: #e0e5ec;
+    --primary-text: #5a677a;
+    --highlight-color: #ffffff;
+    --shadow-color: #a3b1c6;
+    --stop-color: #ff6b6b;
+    --stop-shadow: #e05a5a;
+    --success-color: #28a745;
+    --warning-color: #fd7e14;
+    --warning-shadow: #e06e12;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--primary-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Diseño del Navbar y Footer --- */
+.navbar-custom,
+.footer-custom {
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.navbar-custom .navbar-brand, .navbar-custom .nav-link, .footer-custom p {
+    color: var(--light-text-color) !important;
+}
+.navbar-custom .nav-link.active {
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* --- Diseño de Tarjetas (Neumórfico) --- */
+.card {
+    border-radius: 20px;
+    background: var(--bg-color);
+    box-shadow: 8px 8px 15px var(--shadow-color), -8px -8px 15px var(--highlight-color);
+    border: none;
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+}
+.card-body.card-body-centered {
+    align-items: center;
+    text-align: center;
+}
+
+/* --- Pad de Control (Layout) --- */
+.control-pad {
+    display: grid;
+    gap: 15px;
+    width: 320px;
+    height: 250px;
+    grid-template-areas:
+        "top-left up      top-right"
+        "left     center  right"
+        "spin-left down spin-right";
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.status-indicator {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-text);
+    text-align: center;
+}
+
+/* --- Estilo de Botones "Neumórfico" --- */
+.btn-custom {
+    border-radius: 12px;
+    background: var(--bg-color);
+    border: none;
+    color: var(--primary-text);
+    box-shadow: 5px 5px 10px var(--shadow-color), -5px -5px 10px var(--highlight-color);
+    transition: all 0.1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    padding: 10px;
+}
+.btn-custom:active {
+    box-shadow: inset 5px 5px 10px var(--shadow-color), inset -5px -5px 10px var(--highlight-color);
+    transform: scale(0.98);
+}
+.btn-custom i { font-size: 2rem; }
+.btn-custom span { font-size: 0.75rem; font-weight: 600; }
+.btn-custom.btn-stop {
+    color: #fff;
+    background: var(--stop-color);
+    box-shadow: 5px 5px 10px var(--stop-shadow), -5px -5px 10px #ff8a8a;
+}
+.btn-custom.btn-stop:active {
+     box-shadow: inset 5px 5px 10px var(--stop-shadow), inset -5px -5px 10px #ff8a8a;
+}
+
+/* --- Estilos para la Tabla --- */
+.table {
+    background-color: transparent;
+    color: var(--primary-text);
+}
+.table thead th {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+.table-hover > tbody > tr:hover > * {
+    color: var(--primary-text);
+    background-color: rgba(0, 0, 0, 0.07);
+}
+
+/* --- Estilos Neumórficos para Formularios --- */
+.form-control, .form-select {
+    background-color: var(--bg-color);
+    color: var(--primary-text);
+    border: none;
+    border-radius: 10px;
+    padding: 12px 15px;
+    box-shadow: inset 4px 4px 8px var(--shadow-color), inset -4px -4px 8px var(--highlight-color);
+}
+.form-control:focus, .form-select:focus {
+    background-color: var(--bg-color);
+    color: var(--primary-text);
+    box-shadow: inset 4px 4px 8px var(--shadow-color), inset -4px -4px 8px var(--highlight-color);
+    border-color: transparent;
+    outline: none;
+}
+
+/* --- Estilos para Pestañas (Tabs) de la página de Demos --- */
+.nav-tabs { border-bottom: 1px solid var(--shadow-color); }
+.nav-tabs .nav-link {
+    border: none;
+    color: var(--primary-text);
+    border-radius: 10px 10px 0 0;
+    font-weight: 600;
+}
+.nav-tabs .nav-link.active {
+    background-color: var(--bg-color);
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+/* --- Estilo para la tabla de referencia de demos --- */
+.table-reference { font-size: 0.85rem; }
+.table-reference thead th { font-weight: 700; color: var(--primary-text); }
+.table-reference td, .table-reference th { padding: 0.4rem; }
+
+
+/* --- INICIO DE ESTILOS PARA LA APP DE MONITOREO --- */
+
+.monitor-wrapper {
+    display: flex;
+    /* Altura total menos navbar (56px) y footer (55px) aprox. */
+    min-height: calc(100vh - 111px);
+}
+
+.monitor-sidebar {
+    width: 260px;
+    background: var(--bg-color);
+    /* Sombra sutil a la derecha para separar del contenido */
+    box-shadow: 5px 0 15px -5px var(--shadow-color);
+    padding: 20px;
+    flex-shrink: 0;
+}
+
+.sidebar-nav .nav-link {
+    color: var(--primary-text);
+    font-weight: 600;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s ease-in-out;
+}
+
+.sidebar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Estilo neumórfico "presionado" para el enlace activo */
+.sidebar-nav .nav-link.active {
+    background-color: var(--bg-color);
+    color: var(--secondary-color);
+    box-shadow: inset 5px 5px 10px var(--shadow-color), 
+                inset -5px -5px 10px var(--highlight-color);
+}
+
+.monitor-content {
+    flex-grow: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+/* Estilo para los puntos de estado en el dashboard */
+.status-dot {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+.status-dot.online { background-color: var(--success-color); }
+.status-dot.offline { background-color: var(--stop-color); }
+
+/* --- INICIO DE AJUSTES PARA EL MAPA CARTESIANO --- */
+
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    border-radius: 15px;
+    background-color: #d1d9e6;
+    box-shadow: inset 5px 5px 10px var(--shadow-color),
+                inset -5px -5px 10px var(--highlight-color);
+    overflow: hidden;
+    /* RE-AÑADIMOS LA CUADRÍCULA */
+    background-image:
+        linear-gradient(rgba(163, 177, 198, 0.7) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(163, 177, 198, 0.7) 1px, transparent 1px);
+    background-size: 25px 25px;
+}
+
+/* NUEVO: Contenedor interno que manejará el zoom */
+#map-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: center center; /* El zoom se hará desde el centro */
+    transition: transform 0.2s ease-in-out; /* Animación suave para el zoom */
+}
+
+/* Ejes X e Y (Ahora dentro del contenido escalable) */
+#map-content::before, #map-content::after {
+    content: '';
+    position: absolute;
+    background-color: var(--shadow-color);
+    z-index: 1;
+}
+
+#map-content::before { /* Eje Y */
+    left: 50%; top: 0; width: 2px; height: 100%; transform: translateX(-50%);
+}
+#map-content::after { /* Eje X */
+    top: 50%; left: 0; height: 2px; width: 100%; transform: translateY(-50%);
+}
+
+.obstacle-marker {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: var(--warning-color);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--warning-shadow);
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+/* NUEVO: Estilos para los controles de zoom */
+.zoom-controls {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    background: var(--bg-color);
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 5px 5px 10px var(--shadow-color), -5px -5px 10px var(--highlight-color);
+}
+
+.zoom-btn {
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 8px;
+    background: var(--bg-color);
+    color: var(--primary-text);
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 3px 3px 6px var(--shadow-color), -3px -3px 6px var(--highlight-color);
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.zoom-btn:active {
+    box-shadow: inset 3px 3px 6px var(--shadow-color), inset -3px -3px 6px var(--highlight-color);
+    transform: scale(0.98);
+}
+
+.zoom-display {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 2px 0;
+}
+
+/* NUEVO: Estilo para los contenedores de gráficos del dashboard */
+.chart-container {
+    min-height: 250px; /* Asegura que la tarjeta tenga altura antes de que se cargue el gráfico */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- ... Estilos anteriores ... --- */
+
+/* --- INICIO DE AJUSTES PARA DASHBOARD --- */
+
+/* Contenedor de Gráficos (AQUÍ SE HACEN MÁS PEQUEÑOS) */
+.chart-container {
+    position: relative;
+    height: 280px; /* Altura fija para hacer los gráficos más compactos */
+    width: 100%;
+}
+
+/* Estilo para los items en la tarjeta de estado principal */
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--bg-color);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: inset 5px 5px 10px var(--shadow-color), 
+                inset -5px -5px 10px var(--highlight-color);
+}
+
+.status-item i {
+    font-size: 2rem;
+    color: var(--secondary-color);
+}
+
+.status-item p {
+    font-size: 1.1rem;
+}
+/* Badges de colores para la bitácora de eventos */
+.badge.bg-event-obstacle { background-color: var(--warning-color); }
+.badge.bg-event-demo { background-color: var(--primary-color); }
+.badge.bg-event-movement { background-color: var(--secondary-color); color: var(--light-text-color) !important; }
